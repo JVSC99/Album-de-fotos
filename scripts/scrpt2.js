@@ -1,3 +1,8 @@
-$('#opcoesFotos').animate({
-    scrollLeft: $(this).width() // aqui introduz o numero de px que quer no scroll, neste caso é a altura da propria div, o que faz com que venha para o fim
-}, 1000);
+for(let i=0;i<=19;i++){
+
+    document.write("<div onclick=colocarNaBig("+i+") style='margin-right: 1%;cursor: pointer;'><img id='img"+i+"' class='sub_img' src='images/ocean.jpg' alt=''></div>")
+
+}
+
+
+
