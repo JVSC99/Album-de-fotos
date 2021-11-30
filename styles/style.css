@@ -171,7 +171,7 @@ div::-webkit-scrollbar-thumb {
 }
 
 #load{
-
+position: absolute;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -180,7 +180,8 @@ height: 100%;
 }
 
 #loading{
-    position: absolute;
+    z-index: 100;
+    visibility: hidden;
     animation: load 1s infinite;
     background-color: transparent;
     width: 50px;

@@ -22,7 +22,6 @@ function criarLista(){
     if(campoBusca.value){
         let width = tamdaTela(galeria);
         width = tamTelaInt(width);
-        containerLoading.style.marginLeft = width + 'px';
         containerLoading.style.visibility ='visible';
         pag=1;
         $('#galeria').animate({
@@ -31,7 +30,7 @@ function criarLista(){
         flag=0;
         imgBig.style.visibility = 'hidden';
         capaAlbum.textContent = campoBusca.value;
-        capaAlbum.style.visibility = 'visible';
+        capaAlbum.style.visibility = 'hidden';
         urlAuth = "https://api.pexels.com/v1/search?query="+campoBusca.value;
         geraAuthToken(urlAuth);
     }
@@ -71,6 +70,7 @@ function geraAuthToken(urlAuthToken){
         request.responseType = 'json';  //solicito a api que os dados que eu preciso seja um json
         request.send(null);             // envio a requisição        
     }else{
+        capaAlbum.style.visibility = 'visible';
         containerLoading.style.visibility = 'hidden';
         containeSubImg.style.visibility = 'visible';
         return;
