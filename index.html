@@ -9,25 +9,26 @@
     <link rel="stylesheet" href="styles/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body style="margin: 0%;">
+<body>
 
     <div id="cabecalho">
        
-        <div style="background-color: transparent;align-items: center;width: 30%;height: 100%;display: flex;">
-            <input id="campoBusca" type="text" style="width: 50%;border-radius: 2px; border: 1px solid rgb(255, 255, 255);">
-            <a onclick=criarLista() style="color: blanchedalmond;text-decoration: none;margin-left: 1%;" class="fas fa-search"></a>
+        <div id="menu-busca" >
+            <input id="campoBusca" type="text" style="width: 30%;">
+            <a id="icon-busca" onclick=criarLista() class="fas fa-search"></a>
         </div> 
-        <div style="width:59%;height: 100%;background-color:transparent ;">
+        <div id="menu-centro">
 
         </div>
-        <div style="width: 10%;display: flex ;justify-content: center;height: 100%;">
-            <a href="https://leadster.com.br/" target="_blink" style="width: 100%;height: 100%;"></a>
+        <div id="menu-logo">
+            <a id="logo" href="https://leadster.com.br/" target="_blink" ></a>
         </div>
+    
     </div>
 
     <div id="container-main">
         <div id="img-main">
-            <p id="capaAlbum" style="position: absolute; z-index: 1;font-size: 500%;visibility: hidden;">Nature</p>
+            <p id="capaAlbum">Nature</p>
             <img id="img-big" src="images/background1.gif" alt="">
         </div>
         <div id="legend-img">
@@ -38,24 +39,29 @@
 
     <div id="container-sub_img">
         
-        <div style="height: 100%;width: 7.5%;display: flex;justify-content: center;align-items:center;">
+        <div class="container-seta" >
             <a id="seta1" onclick=paginacao(0) class='fas fa-angle-left setas'></a>
         </div>
 
-        <div id="opcoesFotos" style="z-index: 4;width: 100%; display: flex;height: 100%;justify-content: center;">
+        <div id="opcoesFotos">
             
+            
+
             <div id="galeria">
+                <div id="load">
+                    <div id="loading"></div>
+                </div>
                 <script src="scripts/scrpt2.js"></script>
             </div>
 
         </div>
         
         
-        <div style="height: 100%;width: 7.5%;display: flex;justify-content: center;align-items: center;">
+        <div class="container-seta">
             <a id="seta2" onclick=paginacao(1) class='fas fa-angle-right setas'></a>
         </div>
     </div>
-    <footer style="background-color: gray;height: 4vh;text-align: center;color: #00d1ff;">
+    <footer>
         Copyright © 2021-2021.
     </footer>
 </body>

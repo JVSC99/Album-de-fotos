@@ -1,55 +1,64 @@
-let token = '563492ad6f917000010000013e4f5fa79ed3499d8952c6d21a645d90';
-let urlAuth= "https://api.pexels.com/v1/search?query=baby";
-let foto = document.querySelectorAll('.sub_img');
-let containeSubImg = document.querySelector('#container-sub_img');
-let foto2 = document.querySelector('#img-big');
-let capaAlbum = document.querySelector('#capaAlbum');
-let autor = new Array();
-let urlAutor= new Array();
-var vetorFoto = new Array();
-let flag=0;
-let position=0;
-let pag=1;
-let fotosPagina=0;
+let token = '563492ad6f917000010000013e4f5fa79ed3499d8952c6d21a645d90'; // key de autorização ao fazer requisição no API pexels
+let urlAuth; //url da API
+let foto = document.querySelectorAll('.sub_img'); //dados das imagens do carrossel
+let containeSubImg = document.querySelector('#container-sub_img');//dados do container do carrossel
+let imgBig = document.querySelector('#img-big'); // dados da tag p responsável por armazenar o nome do album
+let capaAlbum = document.querySelector('#capaAlbum'); //dados do container da foto
+let galeria = document.querySelector('#galeria');
+let containerLoading = document.querySelector('#loading');
+let autor = new Array(); // vetor para armazenar o nome dos autores
+let urlAutor= new Array(); // vetor para armazenar a url dos perfil pexel dos autores
+var vetorFoto = new Array(); // vetor para armazenar os dados das fotos que a API retornou
+let flag=0; // controla o numero de requisições que vão ser feita por pesquisa
+let position=0; // controla o tamanho do deslocamento das páginas do carrossel.
+let pag=1; // controla em qual página o carrossel se localiza
 
-let campoBusca = document.querySelector("#campoBusca");
+let campoBusca = document.querySelector("#campoBusca");//dados do campo de digitação
 
+//função inicial e responsável por chamar a fução que faz a requisição na API
 function criarLista(){
-    pag=1;
-    $('#galeria').animate({
-        scrollLeft: '0px' // aqui introduz o numero de px que quer no scroll, neste caso é a altura da propria div, o que faz com que venha para o fim
-    }, 1000);
-    flag=0;
-    foto2.style.visibility = 'hidden';
-    capaAlbum.textContent = campoBusca.value;
-    capaAlbum.style.visibility = 'visible';
-    urlAuth = "https://api.pexels.com/v1/search?query="+campoBusca.value;
-    geraAuthToken(urlAuth);
+    
+
+    if(campoBusca.value){
+        let width = tamdaTela(galeria);
+        width = tamTelaInt(width);
+        containerLoading.style.marginLeft = width + 'px';
+        containerLoading.style.visibility ='visible';
+        pag=1;
+        $('#galeria').animate({
+            scrollLeft: '0px' 
+        }, 1000);
+        flag=0;
+        imgBig.style.visibility = 'hidden';
+        capaAlbum.textContent = campoBusca.value;
+        capaAlbum.style.visibility = 'visible';
+        urlAuth = "https://api.pexels.com/v1/search?query="+campoBusca.value;
+        geraAuthToken(urlAuth);
+    }
+    
     
 }
 
-//Função para retornar o token de autenticação para acessar o url de retorno de dados
+//Função para fazer autenticação/requisição na API e armazenamento dos dados Json. exemplo autores e urls. 
 function geraAuthToken(urlAuthToken){
     let request = new XMLHttpRequest();
 
-    if(flag<=19){
+    if(flag<=5  ){ //resposavel por controlar o número de requisições feitas;
 
-        request.open('GET',urlAuthToken, true);
-        request.setRequestHeader('Authorization', token);
+        request.open('GET',urlAuthToken, true);     //definindo a requisição como um GET
+        request.setRequestHeader('Authorization', token); // setando o header do Json e inserindo a nossa key da API
 
-        request.onload = function(e){             //carrego a requisição, esse método ficará funcionando por trás da aplicação processando o retorno da api
-            if(request.readyState === 4){         //verifica se a conexão está ativa
-                if(request.status === 200){       //verifica se a requisição foi um sucesso
-                    if(flag<=19){
-                        let jsonObj = request.response;// crio uma variavel json para receber os dados retornado da api
-                        vetorFoto[flag] = jsonObj.photos[0];
-                        let id1 = jsonObj.next_page;
-                        inserirSubImg(vetorFoto[flag].src.large,flag);
+        request.onload = function(e){               //carrego a requisição, esse método ficará funcionando por trás da aplicação processando o retorno da api
+            if(request.readyState === 4){           //verifica se a conexão está ativa
+                if(request.status === 200){         //verifica se a requisição foi um sucesso
+                        
+                    let jsonObj = request.response; // Variavel json para receber os dados retornado da api
+                        vetorFoto[flag] = jsonObj.photos[0]; //alocando no vetor os dados do objeto Json relacionado a chave photos
+                        let newUrl = jsonObj.next_page; // atribuindo a url da proxima foto para a variavel newUrl para fazer a requisição da proxima imagem.
+                        inserirSubImg(vetorFoto[flag].src.large,flag); //chamando a função responsável por inserir fotos no carrossel
                         flag++;
-                        geraAuthToken(id1);
-                    }
-                    
-                
+                        geraAuthToken(newUrl);//chamar a função de requisição novamente
+
                 }else{
                     alert('Erro ao receber os dados: '+request.statusText);  //em caso de erro exibe a msg
                 }
@@ -62,6 +71,7 @@ function geraAuthToken(urlAuthToken){
         request.responseType = 'json';  //solicito a api que os dados que eu preciso seja um json
         request.send(null);             // envio a requisição        
     }else{
+        containerLoading.style.visibility = 'hidden';
         containeSubImg.style.visibility = 'visible';
         return;
     }
@@ -73,7 +83,6 @@ function geraAuthToken(urlAuthToken){
 function inserirSubImg(src,img){
     
     foto = document.querySelector("#img"+img); 
-    foto.style.visibility = 'visible';
     foto.setAttribute('src',src);  
     autor[img] = vetorFoto[img].photographer;
     urlAutor[img] = vetorFoto[img].photographer_url;
@@ -82,22 +91,28 @@ function inserirSubImg(src,img){
 //definindo a foto selecionada no carrossel como a imagem principal
 function colocarNaBig(img){
     capaAlbum.style.visibility = 'hidden';
-    foto2.style.visibility = 'visible';
+    imgBig.style.visibility = 'visible';
     foto = document.querySelector("#img"+img);
     let src = foto.getAttribute('src');
     document.querySelector('#legend-img').innerHTML = "Autor:<a id='link-autor' href='"+urlAutor[img]+"'target='_blank'>"+autor[img]+"</a>";
 
-    foto2.setAttribute('src',src);
+    imgBig.setAttribute('src',src);
 
 }
 
+
+function tamdaTela(container){
+    return window.getComputedStyle(container).getPropertyValue('width');
+}
+
+
+//função responsavel pela paginação e controle das páginas
 function paginacao(action){
-    let a = document.querySelector('#galeria');
-    let width = window.getComputedStyle(a).getPropertyValue('width')
+    let width = tamdaTela(galeria);
     let totalFotos;
     totalFotos = (flag);
 
-    tamdaTela(width);
+    let fotosPagina = numFotos(width);
 
     if(action===1){
         if(pag*fotosPagina<totalFotos){
@@ -119,22 +134,39 @@ function paginacao(action){
     
 }
 
-function tamdaTela(width){
+//função responsável por alterar o tamanho do deslocamento do scroll e o numero de fotos em cada pagina de acordo 
+//com o tamanho do container das imagens do carrossel.
+
+function numFotos(width){
     if(width==='270px'){
         position=272;
-        fotosPagina = 3;
-
+        return fotosPagina = 3;
     }
     if(width==='660px'){
         position=660;
-        fotosPagina = 7;
+        return fotosPagina = 7;
     }
     if(width==='893px'){
         position=893;
-        fotosPagina = 7;
+        return fotosPagina = 7;
     }
     if(width==='1200px'){
         position=1200;
-        fotosPagina = 10;
+        return fotosPagina = 10;
     }    
+}
+
+function tamTelaInt(width){
+    if(width==='270px'){
+        return 270;
+    }
+    if(width==='660px'){
+        return 660;
+    }
+    if(width==='893px'){
+        return position=893;
+    }
+    if(width==='1200px'){
+        return position=1200;
+    }  
 }

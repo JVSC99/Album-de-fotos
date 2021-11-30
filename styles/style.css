@@ -1,4 +1,10 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
 body{
+    margin: 0px;
     background-image: url(../images/background4.png);
     background-size: cover;
     background-repeat:no-repeat 
@@ -14,10 +20,7 @@ div::-webkit-scrollbar-thumb {
     background-color: transparent;
 }
 
-*{
-    padding: 0px;
-    margin: 0px;
-}
+
 
 #cabecalho{
     height: 10vh;
@@ -28,6 +31,44 @@ div::-webkit-scrollbar-thumb {
     margin-top: 1vh;
 }
 
+#menu-busca{
+    background-color: transparent;
+    align-items: center;
+    width: 30%;
+    height: 100%;
+    display: flex;
+}
+
+#campo-busca{
+    border-radius: 2px;
+    border: 1px solid rgb(255, 255, 255);
+}
+
+#icon-busca{
+    color: blanchedalmond;
+    text-decoration: none;
+    margin-left: 1%;
+}
+
+
+#menu-centro{
+    width:59%;
+    height: 100%;
+    background-color:transparent;
+}
+
+#menu-logo{
+    width: 10%;
+    display: flex ;
+    justify-content: center;
+    height: 100%;
+}
+
+#logo{
+    width: 100%;
+    height: 100%;
+}
+
 #container-main{
     width: 100%;
     height: 73vh;
@@ -35,6 +76,13 @@ div::-webkit-scrollbar-thumb {
     display: flex;
     justify-content: center;
     align-items: flex-end;
+}
+
+#capaAlbum{
+    position: absolute; 
+    z-index: 1;
+    font-size: 500%;
+    visibility: hidden;
 }
 
 #legend-img{
@@ -94,6 +142,20 @@ div::-webkit-scrollbar-thumb {
     visibility: hidden;
 }
 
+#opcoesFotos{
+    width: 100%; 
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+.container-seta{
+    height: 100%;
+    width: 7.5%;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
 
 .setas{
     color: gray ;
@@ -108,10 +170,44 @@ div::-webkit-scrollbar-thumb {
     display: flex;
 }
 
+#load{
+
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100%;
+
+}
+
+#loading{
+    position: absolute;
+    animation: load 1s infinite;
+    background-color: transparent;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 5px solid transparent;
+    border-top-color: #00d1ff;
+    
+}
+
+@keyframes load{
+    to{
+        transform: rotate(1turn);
+    }
+}
+
 .sub_img{
     border-radius: 5px;
     width: 88px;
     height: 100%;
+}
+
+footer{
+    background-color: gray;
+    height: 4vh;
+    text-align: center;
+    color: #00d1ff;
 }
 
 @media only screen and (min-width: 700px) {
