@@ -8,7 +8,7 @@
   margin-top: 1vh;
 }
 
-#cabecalho #menu-logo {
+#menu-logo {
   width: 10%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -19,18 +19,18 @@
   height: 100%;
 }
 
-#cabecalho #menu-logo #logo {
+#logo {
   width: 100%;
   height: 100%;
 }
 
-#cabecalho #menu-centro {
+#menu-centro {
   width: 59%;
   height: 100%;
   background-color: transparent;
 }
 
-#cabecalho #menu-busca {
+#menu-busca {
   background-color: transparent;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -46,12 +46,12 @@
   padding-right: 10%;
 }
 
-#cabecalho #menu-busca #campo-busca {
+#campo-busca {
   border-radius: 2px;
   border: 1px solid white;
 }
 
-#cabecalho #menu-busca #icon-busca {
+#icon-busca {
   color: white;
   text-decoration: none;
   margin-left: 1%;
@@ -199,7 +199,7 @@
   visibility: hidden;
 }
 
-#container-sub_img .container-seta {
+.container-seta {
   height: 100%;
   width: 7.5%;
   display: -webkit-box;
@@ -213,14 +213,14 @@
           align-items: center;
 }
 
-#container-sub_img .container-seta .setas {
+.setas {
   color: gray;
   text-decoration: none;
   font-size: 200%;
   cursor: pointer;
 }
 
-#container-sub_img #opcoesFotos {
+#opcoesFotos {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -231,7 +231,7 @@
           justify-content: center;
 }
 
-#container-sub_img #opcoesFotos #galeria {
+#galeria {
   width: 270px;
   overflow-x: scroll;
   display: -webkit-box;
@@ -239,10 +239,39 @@
   display: flex;
 }
 
-#container-sub_img #opcoesFotos #galeria .sub_img {
+.sub_img {
   border-radius: 5px;
   width: 88px;
   height: 100%;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+div::-webkit-scrollbar {
+  height: 5px;
+  background-color: transparent;
+}
+
+div::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: transparent;
+}
+
+body {
+  margin: 0px;
+  background-image: url(../images/background4.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+footer {
+  background-color: gray;
+  height: 4vh;
+  text-align: center;
+  color: #00d1ff;
 }
 
 @media only screen and (min-width: 700px) {
@@ -304,34 +333,5 @@
     background-size: cover;
     background-repeat: no-repeat;
   }
-}
-
-* {
-  padding: 0px;
-  margin: 0px;
-}
-
-div::-webkit-scrollbar {
-  height: 5px;
-  background-color: transparent;
-}
-
-div::-webkit-scrollbar-thumb {
-  border-radius: 20px;
-  background-color: transparent;
-}
-
-body {
-  margin: 0px;
-  background-image: url(../images/background4.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-footer {
-  background-color: gray;
-  height: 4vh;
-  text-align: center;
-  color: #00d1ff;
 }
 /*# sourceMappingURL=style.css.map */

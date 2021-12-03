@@ -8,7 +8,7 @@
   visibility: hidden;
 }
 
-#container-sub_img .container-seta {
+.container-seta {
   height: 100%;
   width: 7.5%;
   display: -webkit-box;
@@ -22,14 +22,14 @@
           align-items: center;
 }
 
-#container-sub_img .container-seta .setas {
+.setas {
   color: gray;
   text-decoration: none;
   font-size: 200%;
   cursor: pointer;
 }
 
-#container-sub_img #opcoesFotos {
+#opcoesFotos {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -40,7 +40,7 @@
           justify-content: center;
 }
 
-#container-sub_img #opcoesFotos #galeria {
+#galeria {
   width: 270px;
   overflow-x: scroll;
   display: -webkit-box;
@@ -48,7 +48,7 @@
   display: flex;
 }
 
-#container-sub_img #opcoesFotos #galeria .sub_img {
+.sub_img {
   border-radius: 5px;
   width: 88px;
   height: 100%;
