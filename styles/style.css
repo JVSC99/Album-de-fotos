@@ -100,8 +100,11 @@
   text-decoration: none;
   cursor: pointer;
   text-transform: uppercase;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+}
+
+#legend-img a {
+  color: white;
+  text-decoration: none;
 }
 
 #legend-img:hover {
