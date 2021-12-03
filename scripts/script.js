@@ -19,6 +19,7 @@ let campoBusca = document.querySelector("#campoBusca");//dados do campo de digit
 function criarLista(){
     
     if(campoBusca.value){
+        containeSubImg.style.visibility = 'hidden';
         document.querySelector("#legend-img").style.display = "none";
         let width = tamdaTela(galeria);
         width = tamTelaInt(width);
@@ -60,11 +61,13 @@ function geraAuthToken(urlAuthToken){
 
                 }else{
                     alert('Erro ao receber os dados: '+request.statusText);  //em caso de erro exibe a msg
+                    location.reload();
                 }
             }
         };
         request.onerror = function(e){           //verifica se a criação da requisição não ocorreu erro
-            alert('Erro: '+request.statusText);
+            alert('Digite outro tema'+request.statusText);
+            location.reload();
         }
         
         request.responseType = 'json';  //solicito a api que os dados que eu preciso seja um json
