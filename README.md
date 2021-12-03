@@ -9,4 +9,4 @@ após o tema ser inserido o site faz requisições na API pexel e retorna um nú
 definido no scrpt2.js. Importante ressalta a limitação de requisição da API de 200 requisições 
 por dia e 20000 por mês.
 
-O código foi desenvolvido por @jvsc99.
+O código foi desenvolvido por @jvsc99 e está disponível no repositório.
