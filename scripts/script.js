@@ -18,8 +18,8 @@ let campoBusca = document.querySelector("#campoBusca");//dados do campo de digit
 //função inicial e responsável por chamar a fução que faz a requisição na API
 function criarLista(){
     
-
     if(campoBusca.value){
+        document.querySelector("#legend-img").style.display = "none";
         let width = tamdaTela(galeria);
         width = tamTelaInt(width);
         containerLoading.style.visibility ='visible';
@@ -42,7 +42,7 @@ function criarLista(){
 function geraAuthToken(urlAuthToken){
     let request = new XMLHttpRequest();
 
-    if(flag<=5  ){ //resposavel por controlar o número de requisições feitas;
+    if(flag<=5){ //resposavel por controlar o número de requisições feitas;
 
         request.open('GET',urlAuthToken, true);     //definindo a requisição como um GET
         request.setRequestHeader('Authorization', token); // setando o header do Json e inserindo a nossa key da API
@@ -90,11 +90,12 @@ function inserirSubImg(src,img){
 
 //definindo a foto selecionada no carrossel como a imagem principal
 function colocarNaBig(img){
+    document.querySelector("#legend-img").style.display = "block";
     capaAlbum.style.visibility = 'hidden';
     imgBig.style.visibility = 'visible';
     foto = document.querySelector("#img"+img);
     let src = foto.getAttribute('src');
-    document.querySelector('#legend-img').innerHTML = "Autor:<a id='link-autor' href='"+urlAutor[img]+"'target='_blank'>"+autor[img]+"</a>";
+    document.querySelector('#legend-img').innerHTML = "<a id='link-autor' href='"+urlAutor[img]+"'target='_blank'>Autor:<br>"+autor[img]+"</a>";
 
     imgBig.setAttribute('src',src);
 

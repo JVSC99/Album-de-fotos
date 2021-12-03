@@ -1,0 +1,59 @@
+#cabecalho {
+  height: 10vh;
+  width: 100%;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 1vh;
+}
+
+#cabecalho #menu-logo {
+  width: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+}
+
+#cabecalho #menu-logo #logo {
+  width: 100%;
+  height: 100%;
+}
+
+#cabecalho #menu-centro {
+  width: 59%;
+  height: 100%;
+  background-color: transparent;
+}
+
+#cabecalho #menu-busca {
+  background-color: transparent;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 50%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  padding-right: 10%;
+}
+
+#cabecalho #menu-busca #campo-busca {
+  border-radius: 2px;
+  border: 1px solid white;
+}
+
+#cabecalho #menu-busca #icon-busca {
+  color: white;
+  text-decoration: none;
+  margin-left: 1%;
+}
+/*# sourceMappingURL=cabecalho.css.map */

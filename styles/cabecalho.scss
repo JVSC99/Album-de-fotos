@@ -1,0 +1,54 @@
+#cabecalho{
+    height: 10vh;
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    margin-top: 1vh;
+    #menu-logo{
+        width: 10%;
+        display: flex ;
+        justify-content: center;
+        height: 100%;
+        #logo{
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    #menu-centro{
+        width:59%;
+        height: 100%;
+        background-color:transparent;   
+    }
+    #menu-busca{
+        background-color: transparent;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: end;
+        padding-right: 10%;
+        #campo-busca{
+            border-radius: 2px;
+            border: 1px solid white;
+        }
+        #icon-busca{
+            color: white;
+            text-decoration: none;
+            margin-left: 1%;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
