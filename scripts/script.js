@@ -12,12 +12,13 @@ var vetorFoto = new Array(); // vetor para armazenar os dados das fotos que a AP
 let flag=0; // controla o numero de requisições que vão ser feita por pesquisa
 let position=0; // controla o tamanho do deslocamento das páginas do carrossel.
 let pag=1; // controla em qual página o carrossel se localiza
-
+let num_fotos = 19// aqui definimos o número de fotos que serão requisitadas a API.
 let campoBusca = document.querySelector("#campoBusca");//dados do campo de digitação
 
 //função inicial e responsável por chamar a fução que faz a requisição na API
 function criarLista(){
     
+    // if responsável por executar a requisição somente se tiver algo digitado no input
     if(campoBusca.value){
         containeSubImg.style.visibility = 'hidden';
         document.querySelector("#legend-img").style.display = "none";
@@ -43,7 +44,7 @@ function criarLista(){
 function geraAuthToken(urlAuthToken){
     let request = new XMLHttpRequest();
 
-    if(flag<=5){ //resposavel por controlar o número de requisições feitas;
+    if(flag<=num_fotos){ //resposavel por controlar o número de requisições feitas;
 
         request.open('GET',urlAuthToken, true);     //definindo a requisição como um GET
         request.setRequestHeader('Authorization', token); // setando o header do Json e inserindo a nossa key da API
@@ -56,18 +57,18 @@ function geraAuthToken(urlAuthToken){
                         vetorFoto[flag] = jsonObj.photos[0]; //alocando no vetor os dados do objeto Json relacionado a chave photos
                         let newUrl = jsonObj.next_page; // atribuindo a url da proxima foto para a variavel newUrl para fazer a requisição da proxima imagem.
                         inserirSubImg(vetorFoto[flag].src.large,flag); //chamando a função responsável por inserir fotos no carrossel
-                        flag++;
+                        flag++; 
                         geraAuthToken(newUrl);//chamar a função de requisição novamente
 
                 }else{
-                    alert('Erro ao receber os dados: '+request.statusText);  //em caso de erro exibe a msg
-                    location.reload();
+                    alert('Erro ao receber os dados: ');  //em caso de erro exibe a msg
+                    location.reload();// função para atualizar a página em caso de erro na requisição
                 }
             }
         };
         request.onerror = function(e){           //verifica se a criação da requisição não ocorreu erro
-            alert('Digite outro tema'+request.statusText);
-            location.reload();
+            alert('Digite outro tema');
+            location.reload();// função para atualizar a página em caso de erro na requisição
         }
         
         request.responseType = 'json';  //solicito a api que os dados que eu preciso seja um json
@@ -104,7 +105,7 @@ function colocarNaBig(img){
 
 }
 
-
+// função responsável por pegar o tamanho do container das sub imagens.
 function tamdaTela(container){
     return window.getComputedStyle(container).getPropertyValue('width');
 }
@@ -130,7 +131,7 @@ function paginacao(action){
         if(pag>1){
             pag--;
             $('#galeria').animate({
-                scrollLeft: (pag*position - position)+'px' // aqui introduz o numero de px que quer no scroll, neste caso é a altura da propria div, o que faz com que venha para o fim
+                scrollLeft: (pag*position - position)+'px'
             }, 1000);
         }
         
@@ -140,7 +141,6 @@ function paginacao(action){
 
 //função responsável por alterar o tamanho do deslocamento do scroll e o numero de fotos em cada pagina de acordo 
 //com o tamanho do container das imagens do carrossel.
-
 function numFotos(width){
     if(width==='270px'){
         position=272;
@@ -160,6 +160,7 @@ function numFotos(width){
     }    
 }
 
+//função responsável por retornar o tamanho da região onde as sub imagens se localizam em valor númerico
 function tamTelaInt(width){
     if(width==='270px'){
         return 270;
