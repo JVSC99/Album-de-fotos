@@ -1,4 +1,4 @@
-let token = '563492ad6f917000010000013e4f5fa79ed3499d8952c6d21a645d90'; // key de autorização ao fazer requisição no API pexels
+let token = '563492ad6f917000010000010dfc2aa5b78645a5ad2330156d5ca08ds'; // key de autorização ao fazer requisição no API pexels
 let urlAuth; //url da API
 let foto = document.querySelectorAll('.sub_img'); //dados das imagens do carrossel
 let containeSubImg = document.querySelector('#container-sub_img');//dados do container do carrossel
@@ -12,7 +12,7 @@ var vetorFoto = new Array(); // vetor para armazenar os dados das fotos que a AP
 let flag=0; // controla o numero de requisições que vão ser feita por pesquisa
 let position=0; // controla o tamanho do deslocamento das páginas do carrossel.
 let pag=1; // controla em qual página o carrossel se localiza
-let num_fotos = 19// aqui definimos o número de fotos que serão requisitadas a API.
+// aqui definimos o número de fotos que serão requisitadas a API.
 let campoBusca = document.querySelector("#campoBusca");//dados do campo de digitação
 
 //função inicial e responsável por chamar a fução que faz a requisição na API
@@ -44,7 +44,7 @@ function criarLista(){
 function geraAuthToken(urlAuthToken){
     let request = new XMLHttpRequest();
 
-    if(flag<=num_fotos){ //resposavel por controlar o número de requisições feitas;
+    if(flag<=19){ //resposavel por controlar o número de requisições feitas;
 
         request.open('GET',urlAuthToken, true);     //definindo a requisição como um GET
         request.setRequestHeader('Authorization', token); // setando o header do Json e inserindo a nossa key da API
